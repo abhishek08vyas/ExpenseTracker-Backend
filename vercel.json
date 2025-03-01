@@ -1,9 +1,9 @@
 {
-	"version": 2,
-	"routes": [
+	"outputDirectory": "build",
+	"rewrites": [
 		{
-			"src": "/(.*)",
-			"dest": "/api/$1"
+			"source": "/(.*)",
+			"destination": "/server.ts"
 		}
 	]
 }
