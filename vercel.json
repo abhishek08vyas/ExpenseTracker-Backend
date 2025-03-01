@@ -9,16 +9,11 @@
 	],
 	"routes": [
 		{
-			"src": "/documentation/(.*)",
-			"dest": "src/index.ts"
-		},
-		{
-			"src": "/documentation",
-			"dest": "src/index.ts"
-		},
-		{
 			"src": "/(.*)",
 			"dest": "src/index.ts"
 		}
-	]
+	],
+	"env": {
+		"NODE_ENV": "production"
+	}
 }

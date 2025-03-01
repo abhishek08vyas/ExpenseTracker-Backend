@@ -21,30 +21,11 @@ app.get("/", async (req, res) => {
     <html>
       <head>
         <title>Expense Tracker API</title>
-        <style>
-          body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-          }
-          .button {
-            display: inline-block;
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            font-size: 16px;
-            margin: 10px 0;
-            border-radius: 4px;
-          }
-        </style>
       </head>
       <body>
         <h1>Expense Tracker API</h1>
         <p>The API is running successfully!</p>
-        <a href="/documentation" class="button">View API Documentation</a>
+        <a href="/documentation" class="button">Expense Tracker API Documentation</a>
       </body>
     </html>
   `);
