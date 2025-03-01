@@ -1,9 +1,9 @@
 {
-	"outputDirectory": "build",
+	"outputDirectory": "dist",
 	"rewrites": [
 		{
 			"source": "/(.*)",
-			"destination": "/server.ts"
+			"destination": "server.ts"
 		}
 	]
 }
