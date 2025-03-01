@@ -11,7 +11,7 @@ const start = async () => {
 		logger.info("Database connection established successfully");
 
 		// Start server
-		await app.listen({ port: config.app.port as number });
+		await app.listen({ port: config.app.port as number, host: "0.0.0.0" });
 		logger.info(`Server started on port ${config.app.port}`);
 	} catch (err) {
 		logger.error("Error starting server:", err);
