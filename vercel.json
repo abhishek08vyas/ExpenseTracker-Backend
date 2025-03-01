@@ -1,6 +1,5 @@
 {
 	"version": 2,
-	"builds": [],
 	"functions": {
 		"api/**/*.ts": {
 			"runtime": "nodejs18.x"
