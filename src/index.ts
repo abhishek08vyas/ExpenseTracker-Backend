@@ -17,11 +17,64 @@ prisma
 
 // Add a health check route
 app.get("/", async (req, res) => {
-	return res.status(200).type("text/html").send("<h1>API is running</h1>");
+	return res.status(200).type("text/html").send(`
+    <html>
+      <head>
+        <title>Expense Tracker API</title>
+        <style>
+          body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+          }
+          .button {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            margin: 10px 0;
+            border-radius: 4px;
+          }
+        </style>
+      </head>
+      <body>
+        <h1>Expense Tracker API</h1>
+        <p>The API is running successfully!</p>
+        <a href="/documentation" class="button">View API Documentation</a>
+      </body>
+    </html>
+  `);
 });
+
+// Initialize Swagger before handling requests
+const initApp = async () => {
+	try {
+		await app.ready();
+		logger.info("Application initialized successfully");
+	} catch (err) {
+		if (err instanceof Error) {
+			logger.error(`Error initializing app: ${err.message}`);
+		} else {
+			logger.error("Unknown error initializing app");
+		}
+	}
+};
+
+// Initialize the app
+initApp();
 
 // Export for Vercel serverless deployment
 export default async (req: any, res: any) => {
-	await app.ready();
-	app.server.emit("request", req, res);
+	try {
+		await app.ready();
+		app.server.emit("request", req, res);
+	} catch (err) {
+		console.error("Error handling request:", err);
+		res.statusCode = 500;
+		res.end("Internal Server Error");
+	}
 };

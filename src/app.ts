@@ -1,9 +1,14 @@
 import fastify from "fastify";
 import masterRouter from "./router/master.router";
 import logger from "./utils/logger";
+import config from "./config/config";
 
 function buildApp() {
 	const app = fastify({ logger: false });
+
+	// Determine the host based on environment
+	const isProduction = config.app.nodeEnv === "production";
+	const host = isProduction ? process.env.VERCEL_URL || "expense-tracker-backend-azure-alpha.vercel.app" : "localhost:3000";
 
 	// Register Swagger
 	app.register(import("@fastify/swagger"), {
@@ -17,8 +22,8 @@ function buildApp() {
 				url: "https://github.com/yourusername/student-finance-tracker",
 				description: "Find more info here",
 			},
-			host: "localhost:3000",
-			schemes: ["http", "https"],
+			host: host,
+			schemes: isProduction ? ["https"] : ["http", "https"],
 			consumes: ["application/json"],
 			produces: ["application/json"],
 			tags: [
@@ -48,6 +53,11 @@ function buildApp() {
 
 	// Register routes
 	app.register(masterRouter, { prefix: "/api" });
+
+	// Add a specific route for Swagger documentation when accessed at the root
+	app.get("/swagger", (_, reply) => {
+		reply.redirect("/documentation");
+	});
 
 	// Global error handler
 	app.setErrorHandler((error, request, reply) => {
