@@ -2,6 +2,7 @@ import buildApp from "./app";
 import config from "./config/config";
 import logger from "./utils/logger";
 import prisma from "./config/database";
+import http from "http";
 
 const start = async () => {
 	try {
@@ -14,11 +15,26 @@ const start = async () => {
 			return res.status(200).type("text/html").send("html");
 		});
 
-		// Start server
-		await app.listen({ port: config.app.port as number, host: "0.0.0.0" });
-		logger.info(`Server started on port ${config.app.port}`);
-	} catch (err) {
-		logger.error("Error starting server:", err);
+		// Get the HTTP server instance from Fastify
+		const httpServer: http.Server = app.server;
+
+		// Start server using Node.js http module
+		await new Promise<void>((resolve, reject) => {
+			httpServer
+				.listen("8080", () => {
+					logger.info(`Server started on port ${config.app.port}`);
+					resolve();
+				})
+				.on("error", (err: Error) => {
+					reject(err);
+				});
+		});
+	} catch (err: unknown) {
+		if (err instanceof Error) {
+			logger.error(`Error starting server: ${err.message}`, { stack: err.stack });
+		} else {
+			logger.error("Unknown error occurred during server startup");
+		}
 		process.exit(1);
 	}
 };
