@@ -4,12 +4,8 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"start": "node dist/server.js",
-		"dev": "nodemon src/server.ts",
-		"build": "tsc -p tsconfig.json && prisma generate",
-		"vercel-build": "tsc -p tsconfig.json && prisma generate",
-		"lint": "eslint . --ext .ts",
-		"test": "jest"
+		"start": "ts-node ./src/server.ts",
+		"build": "tsc -p tsconfig.json"
 	},
 	"keywords": [],
 	"author": "",
