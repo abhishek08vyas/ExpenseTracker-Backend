@@ -4,7 +4,10 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"start": "nodemon"
+		"dev": "nodemon",
+		"build": "tsc",
+		"start": "nodemon",
+		"vercel-build": "prisma generate && tsc"
 	},
 	"keywords": [],
 	"author": "",
