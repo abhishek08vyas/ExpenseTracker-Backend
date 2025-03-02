@@ -19,7 +19,7 @@ function buildApp() {
 	// });
 	// Register Swagger
 	app.register(import("@fastify/swagger"), {
-		openapi: {
+		swagger: {
 			info: {
 				title: "Expense Tracker API",
 				version: "1.0.0",
@@ -29,17 +29,14 @@ function buildApp() {
 				{ name: "Authentication", description: "Authentication related endpoints" },
 				{ name: "Transactions", description: "Transaction management endpoints" },
 			],
-			components: {
-				securitySchemes: {
-					BearerAuth: {
-						description: "RSA256 JWT signed by private key, with username in payload",
-						type: "http",
-						scheme: "bearer",
-						bearerFormat: "JWT",
-					},
+			securityDefinitions: {
+				bearerAuth: {
+					type: "apiKey",
+					name: "Authorization",
+					in: "header",
+					description: "Enter your bearer token in the format 'Bearer {token}'",
 				},
 			},
-			security: [{ BearerAuth: [] }],
 		},
 	});
 
