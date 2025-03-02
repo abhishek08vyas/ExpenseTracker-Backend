@@ -2,7 +2,7 @@
 	"version": 2,
 	"builds": [
 		{
-			"src": "src/index.ts",
+			"src": "src/server.ts",
 			"use": "@vercel/node",
 			"config": { "runtime": "nodejs18.x" }
 		}
@@ -10,7 +10,11 @@
 	"routes": [
 		{
 			"src": "/(.*)",
-			"dest": "src/index.ts"
+			"dest": "src/server.ts"
+		},
+		{
+			"src": "/api/v1/.*",
+			"dest": "/api"
 		}
 	]
 }
