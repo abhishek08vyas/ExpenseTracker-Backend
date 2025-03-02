@@ -10,41 +10,19 @@ function buildApp() {
 	const isProduction = config.app.nodeEnv === "production";
 	const host = isProduction ? process.env.VERCEL_URL || "expense-tracker-backend-azure-alpha.vercel.app" : "localhost:3000";
 
-	app.register(import("@fastify/cors"), {
-		// You can restrict origins in production
-		origin: true, // During development, allow all origins
-		methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-		credentials: true,
-		allowedHeaders: ["Content-Type", "Authorization"],
-	});
+	// app.register(import("@fastify/cors"), {
+	// 	// You can restrict origins in production
+	// 	origin: true, // During development, allow all origins
+	// 	methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+	// 	credentials: true,
+	// 	allowedHeaders: ["Content-Type", "Authorization"],
+	// });
 	// Register Swagger
 	app.register(import("@fastify/swagger"), {
-		swagger: {
+		openapi: {
 			info: {
-				title: "Student Finance Tracker API",
-				description: "API for managing student finances, expenses, and spending habits",
+				title: "Expense Tracker API",
 				version: "1.0.0",
-			},
-			externalDocs: {
-				url: "https://github.com/yourusername/student-finance-tracker",
-				description: "Find more info here",
-			},
-			host: "expense-tracker-backend-silk-three.vercel.app",
-			schemes: ["http", "https"],
-			consumes: ["application/json"],
-			produces: ["application/json"],
-			tags: [
-				{ name: "System", description: "Health Check" },
-				{ name: "Authentication", description: "Authentication related endpoints" },
-				{ name: "Transactions", description: "Transaction management endpoints" },
-			],
-			securityDefinitions: {
-				bearerAuth: {
-					type: "apiKey",
-					name: "Authorization",
-					in: "header",
-					description: "Enter your bearer token in the format 'Bearer {token}'",
-				},
 			},
 		},
 	});
