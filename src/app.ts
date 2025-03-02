@@ -12,13 +12,7 @@ function buildApp() {
 
 	// Register Swagger
 	app.register(import("@fastify/swagger"), {
-		openapi: {
-			info: {
-				title: "Expense Tracker API",
-				version: "1.0.0",
-			},
-		},
-		/*swagger: {
+		swagger: {
 			info: {
 				title: "Student Finance Tracker API",
 				description: "API for managing student finances, expenses, and spending habits",
@@ -28,11 +22,12 @@ function buildApp() {
 				url: "https://github.com/yourusername/student-finance-tracker",
 				description: "Find more info here",
 			},
-			host: host,
-			schemes: isProduction ? ["https"] : ["http", "https"],
+			host: "expense-tracker-backend-silk-three.vercel.app",
+			schemes: ["http", "https"],
 			consumes: ["application/json"],
 			produces: ["application/json"],
 			tags: [
+				{ name: "System", description: "Health Check" },
 				{ name: "Authentication", description: "Authentication related endpoints" },
 				{ name: "Transactions", description: "Transaction management endpoints" },
 			],
@@ -41,9 +36,10 @@ function buildApp() {
 					type: "apiKey",
 					name: "Authorization",
 					in: "header",
+					description: "Enter your bearer token in the format 'Bearer {token}'",
 				},
 			},
-		},*/
+		},
 	});
 
 	// Register Swagger UI

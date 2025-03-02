@@ -15,6 +15,21 @@ const createTransactionSchema = z.object({
 	isRecurring: z.boolean().default(false),
 });
 
+// Validation schema for updating transactions
+const updateTransactionSchema = z.object({
+	categoryId: z.number().optional(),
+	transactionType: z.enum(["expense", "income"]).optional(),
+	source: z.string().optional(),
+	currency: z.string().optional(),
+	amount: z.number().positive().optional(),
+	transactionDate: z
+		.string()
+		.transform((str) => new Date(str))
+		.optional(),
+	description: z.string().optional(),
+	isRecurring: z.boolean().optional(),
+});
+
 // Validation schema for filtering transactions
 const filterTransactionsSchema = z.object({
 	startDate: z
@@ -25,7 +40,10 @@ const filterTransactionsSchema = z.object({
 		.string()
 		.optional()
 		.transform((d) => (d ? new Date(d) : undefined)),
-	categoryId: z.coerce.number().optional(),
+	categoryId: z
+		.string()
+		.optional()
+		.transform((val) => (val ? parseInt(val, 10) : undefined)),
 	transactionType: z.enum(["expense", "income"]).optional(),
 	source: z.string().optional(),
 	minAmount: z.coerce.number().optional(),
@@ -60,6 +78,66 @@ export class TransactionService {
 			data: validatedData,
 			include: {
 				category: true,
+			},
+		});
+	}
+
+	// Get a transaction by ID
+	async getTransactionById(id: number, userId: string) {
+		logger.info(`Fetching transaction with ID ${id} for user ${userId}`, {
+			userId,
+			transactionId: id,
+		});
+
+		return this.prisma.transaction.findFirst({
+			where: {
+				id,
+				userId,
+				isActive: true,
+			},
+			include: {
+				category: true,
+			},
+		});
+	}
+
+	// Update a transaction
+	async updateTransaction(id: number, userId: string, data: any) {
+		const validatedData = updateTransactionSchema.parse(data);
+
+		logger.info(`Updating transaction ${id} for user ${userId}`, {
+			userId,
+			transactionId: id,
+			updateData: validatedData,
+		});
+
+		return this.prisma.transaction.update({
+			where: {
+				id,
+				userId,
+			},
+			data: validatedData,
+			include: {
+				category: true,
+			},
+		});
+	}
+
+	// Delete a transaction (soft delete)
+	async deleteTransaction(id: number, userId: string) {
+		logger.info(`Deleting transaction ${id} for user ${userId}`, {
+			userId,
+			transactionId: id,
+		});
+
+		// Using soft delete by setting isActive to false
+		return this.prisma.transaction.update({
+			where: {
+				id,
+				userId,
+			},
+			data: {
+				isActive: false,
 			},
 		});
 	}
@@ -136,7 +214,7 @@ export class TransactionService {
 		}
 
 		// Category filter
-		if (categoryId) {
+		if (categoryId !== undefined) {
 			where.categoryId = categoryId;
 		}
 
