@@ -51,7 +51,7 @@ initApp();
 // Export for Vercel serverless deployment
 export default async (req: any, res: any) => {
 	try {
-		await app.ready();
+		// await app.ready();
 		app.server.emit("request", req, res);
 	} catch (err) {
 		console.error("Error handling request:", err);
