@@ -32,6 +32,7 @@ function buildApp() {
 			components: {
 				securitySchemes: {
 					BearerAuth: {
+						description: "RSA256 JWT signed by private key, with username in payload",
 						type: "http",
 						scheme: "bearer",
 						bearerFormat: "JWT",
