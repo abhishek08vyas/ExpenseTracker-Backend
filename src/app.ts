@@ -12,7 +12,13 @@ function buildApp() {
 
 	// Register Swagger
 	app.register(import("@fastify/swagger"), {
-		swagger: {
+		openapi: {
+			info: {
+				title: "Expense Tracker API",
+				version: "1.0.0",
+			},
+		},
+		/*swagger: {
 			info: {
 				title: "Student Finance Tracker API",
 				description: "API for managing student finances, expenses, and spending habits",
@@ -37,7 +43,7 @@ function buildApp() {
 					in: "header",
 				},
 			},
-		},
+		},*/
 	});
 
 	// Register Swagger UI
