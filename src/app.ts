@@ -31,9 +31,11 @@ function buildApp() {
 			],
 			components: {
 				securitySchemes: {
-					type: "http",
-					scheme: "bearer",
-					bearerFormat: "JWT",
+					bearerAuth: {
+						type: "http",
+						scheme: "bearer",
+						bearerFormat: "JWT",
+					},
 				},
 			},
 			security: [{ BearerAuth: [] }],
