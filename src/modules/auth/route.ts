@@ -4,7 +4,7 @@ import config from "../../config/config";
 import AuthMiddleware from "./middleware";
 
 async function authRoutes(fastify: FastifyInstance) {
-	fastify.post("/register", AuthController.register.bind(AuthController));
+	// fastify.post("/register", AuthController.register.bind(AuthController));
 
 	await fastify.register(import("@fastify/jwt"), {
 		secret: config.jwt.secret,
