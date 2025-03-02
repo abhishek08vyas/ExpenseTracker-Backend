@@ -60,11 +60,6 @@ function buildApp() {
 	// Register routes
 	app.register(masterRouter, { prefix: "/api" });
 
-	// Add a specific route for Swagger documentation when accessed at the root
-	app.get("/swagger", (_, reply) => {
-		reply.redirect("/documentation");
-	});
-
 	// Global error handler
 	app.setErrorHandler((error, request, reply) => {
 		logger.error("Server error:", error);

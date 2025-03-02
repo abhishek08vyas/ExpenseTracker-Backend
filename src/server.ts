@@ -12,7 +12,18 @@ const start = async () => {
 		logger.info("Database connection established successfully");
 
 		app.get("/", async (req, res) => {
-			return res.status(200).type("text/html").send("html");
+			return res.status(200).type("text/html").send(`
+    <html>
+      <head>
+        <title>Expense Tracker API</title>
+      </head>
+      <body>
+        <h1>Expense Tracker API</h1>
+        <p>The API is running successfully!</p>
+        <a href="/documentation" class="button">Expense Tracker API Documentation</a>
+      </body>
+    </html>
+  `);
 		});
 
 		// Get the HTTP server instance from Fastify
