@@ -18,6 +18,7 @@
 		"@fastify/swagger-ui": "^2.1.0",
 		"@prisma/client": "^5.22.0",
 		"@types/jsonwebtoken": "^9.0.9",
+		"@vercel/node": "^5.1.10",
 		"dotenv": "^16.4.7",
 		"fastify": "^4.29.0",
 		"jsonwebtoken": "^9.0.2",
