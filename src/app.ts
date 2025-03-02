@@ -24,6 +24,21 @@ function buildApp() {
 				title: "Expense Tracker API",
 				version: "1.0.0",
 			},
+			tags: [
+				{ name: "System", description: "Health Check" },
+				{ name: "Authentication", description: "Authentication related endpoints" },
+				{ name: "Transactions", description: "Transaction management endpoints" },
+			],
+			components: {
+				securitySchemes: {
+					BearerAuth: {
+						type: "http",
+						scheme: "bearer",
+						bearerFormat: "JWT",
+					},
+				},
+			},
+			security: [{ BearerAuth: [] }],
 		},
 	});
 
