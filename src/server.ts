@@ -1,18 +1,23 @@
 import buildApp from "./app";
-import config from "./config/config";
 import logger from "./utils/logger";
 import prisma from "./config/database";
-import http from "http";
 
-const start = async () => {
-	try {
-		const app = buildApp();
+// Create the Fastify app
+const app = buildApp();
 
-		await prisma.$connect();
+// Connect to database when the app starts
+prisma
+	.$connect()
+	.then(() => {
 		logger.info("Database connection established successfully");
+	})
+	.catch((err: any) => {
+		logger.error(`Failed to connect to database: ${err}`);
+	});
 
-		app.get("/", async (req, res) => {
-			return res.status(200).type("text/html").send(`
+// Add a health check route
+app.get("/", async (req, res) => {
+	return res.status(200).type("text/html").send(`
     <html>
       <head>
         <title>Expense Tracker API</title>
@@ -24,30 +29,33 @@ const start = async () => {
       </body>
     </html>
   `);
-		});
+});
 
-		// Get the HTTP server instance from Fastify
-		const httpServer: http.Server = app.server;
-
-		// Start server using Node.js http module
-		await new Promise<void>((resolve, reject) => {
-			httpServer
-				.listen("8080", () => {
-					logger.info(`Server started on port ${config.app.port}`);
-					resolve();
-				})
-				.on("error", (err: Error) => {
-					reject(err);
-				});
-		});
-	} catch (err: unknown) {
+// Initialize Swagger before handling requests
+const initApp = async () => {
+	try {
+		await app.ready();
+		logger.info("Application initialized successfully");
+	} catch (err) {
 		if (err instanceof Error) {
-			logger.error(`Error starting server: ${err.message}`, { stack: err.stack });
+			logger.error(`Error initializing app: ${err.message}`);
 		} else {
-			logger.error("Unknown error occurred during server startup");
+			logger.error("Unknown error initializing app");
 		}
-		process.exit(1);
 	}
 };
 
-start();
+// Initialize the app
+initApp();
+
+// Export for Vercel serverless deployment
+export default async (req: any, res: any) => {
+	try {
+		// await app.ready();
+		app.server.emit("request", req, res);
+	} catch (err) {
+		console.error("Error handling request:", err);
+		res.statusCode = 500;
+		res.end("Internal Server Error");
+	}
+};
