@@ -31,7 +31,7 @@ function buildApp() {
 			],
 			components: {
 				securitySchemes: {
-					BearerAuth: {
+					apiKey: {
 						type: "apiKey",
 						name: "Authorization",
 						in: "header",
