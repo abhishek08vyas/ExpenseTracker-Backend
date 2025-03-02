@@ -32,9 +32,10 @@ function buildApp() {
 			components: {
 				securitySchemes: {
 					BearerAuth: {
-						type: "http",
-						scheme: "bearer",
-						bearerFormat: "JWT",
+						type: "apiKey",
+						name: "Authorization",
+						in: "header",
+						description: "Enter your bearer token in the format 'Bearer {token}'",
 					},
 				},
 			},
