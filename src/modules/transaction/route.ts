@@ -36,7 +36,7 @@ export default async function transactionRoutes(fastify: FastifyInstance, option
 					type: "object",
 					properties: {
 						success: { type: "boolean" },
-						data: { type: "object" },
+						data: { type: "object", additionalProperties: true },
 					},
 				},
 			},
@@ -151,7 +151,7 @@ export default async function transactionRoutes(fastify: FastifyInstance, option
 					type: "object",
 					properties: {
 						success: { type: "boolean" },
-						data: { type: "object" },
+						data: { type: "object", additionalProperties: true },
 					},
 				},
 				404: {
@@ -206,7 +206,7 @@ export default async function transactionRoutes(fastify: FastifyInstance, option
 					type: "object",
 					properties: {
 						success: { type: "boolean" },
-						data: { type: "object" },
+						data: { type: "object", additionalProperties: true },
 					},
 				},
 				404: {
