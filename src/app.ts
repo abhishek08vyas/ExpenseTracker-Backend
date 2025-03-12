@@ -28,6 +28,7 @@ function buildApp() {
 				{ name: "System", description: "Health Check" },
 				{ name: "Authentication", description: "Authentication related endpoints" },
 				{ name: "Transactions", description: "Transaction management endpoints" },
+				{ name: "Categories", description: "Category endpoints" },
 			],
 			securityDefinitions: {
 				bearerAuth: {
