@@ -25,6 +25,9 @@ async function masterRouter(fastify: FastifyInstance) {
 	// Register existing category routes
 	fastify.register(import("../modules/category/route"), { prefix: "/v1/categories" });
 
+	// Register existing finance routes
+	fastify.register(import("../modules/finance/route"), { prefix: "/v1/finance" });
+
 	// Health check endpoint with Swagger documentation
 	fastify.get(
 		"/health",
