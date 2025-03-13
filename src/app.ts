@@ -10,13 +10,13 @@ function buildApp() {
 	const isProduction = config.app.nodeEnv === "production";
 	const host = isProduction ? process.env.VERCEL_URL || "expense-tracker-backend-azure-alpha.vercel.app" : "localhost:3000";
 
-	// app.register(import("@fastify/cors"), {
-	// 	// You can restrict origins in production
-	// 	origin: true, // During development, allow all origins
-	// 	methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-	// 	credentials: true,
-	// 	allowedHeaders: ["Content-Type", "Authorization"],
-	// });
+	app.register(import("@fastify/cors"), {
+		// You can restrict origins in production
+		origin: "*", // During development, allow all origins
+		methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+		credentials: true,
+		allowedHeaders: ["Content-Type", "Authorization"],
+	});
 	// Register Swagger
 	app.register(import("@fastify/swagger"), {
 		swagger: {
