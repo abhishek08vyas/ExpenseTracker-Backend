@@ -29,6 +29,7 @@ function buildApp() {
 				{ name: "Authentication", description: "Authentication related endpoints" },
 				{ name: "Transactions", description: "Transaction management endpoints" },
 				{ name: "Categories", description: "Category endpoints" },
+				{ name: "Budget", description: "Budget endpoints" },
 			],
 			securityDefinitions: {
 				bearerAuth: {

@@ -1,0 +1,100 @@
+<svg version="1.1" baseProfile="full" width="1380.0" height="523.0" viewBox="0 0 1380 523" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events">
+<desc >#.interface: fill=lightblue
+#.enumeration: fill=lightgreen
+#.type: fill=lightgray
+
+[BudgetController|-budgetService: BudgetService|-isValidPeriod(): boolean;+createBudget(): Promise&lt;never&gt;;+getBudgets(): Promise&lt;never&gt;;+getBudget(): Promise&lt;never&gt;;+updateBudget(): Promise&lt;never&gt;;+deleteBudget(): Promise&lt;never&gt;]
+[&lt;interface&gt;BudgetRequest|+body: { categoryId: number; currency: string; amount: number; period?: string; startDate: string; endDate: string; isActive?: boolean; };+user: { id: string; };+params: { id: string; }|]
+[FastifyRequest&lt;RouteGeneric,RawServer,RawRequest,SchemaCompiler,TypeProvider,ContextConfig,Logger,RequestType&gt;]&lt;:--[BudgetRequest]</desc>
+<g stroke-width="1.0" text-align="left" font="12pt Helvetica, Arial, sans-serif" font-size="12pt" font-family="Helvetica" font-weight="bold" font-style="normal">
+<g font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" stroke-width="3.0" stroke-linejoin="round" stroke-linecap="round" stroke="#33322E">
+<g stroke="transparent" fill="transparent">
+<rect x="0.0" y="0.0" height="523.0" width="1380.0" stroke="none"></rect>
+</g>
+<g transform="translate(8, 8)" fill="#33322E">
+<g transform="translate(20, 20)" fill="#eee8d5" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal">
+<g stroke-dasharray="6 6">
+<path d="M826.0 117.8 L826 197 L826 217 L826.0 217.0 " fill="none"></path>
+</g>
+<path d="M831.3 117.8 L826.0 117.8 L820.7 117.8 L826.0 104.5 Z"></path>
+<g data-name="BudgetController">
+<g fill="#eee8d5" stroke="#33322E" data-name="BudgetController">
+<rect x="0.0" y="0.0" height="177.0" width="288.0" data-name="BudgetController"></rect>
+<path d="M0.0 32.0 L288.0 32.0" fill="none" data-name="BudgetController"></path>
+<path d="M0.0 64.0 L288.0 64.0" fill="none" data-name="BudgetController"></path>
+</g>
+<g transform="translate(0, 0)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="BudgetController" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="BudgetController" data-compartment="0">
+<a id="controller.ts.BudgetController" xlink:href="controller.ts"><text x="136.0" y="14.1" stroke="none" text-anchor="middle" data-name="BudgetController" data-compartment="0">BudgetController</text></a>
+
+</g>
+</g>
+<g transform="translate(0, 32)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="BudgetController" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="BudgetController" data-compartment="1">
+<text x="0.0" y="14.1" stroke="none" data-name="BudgetController" data-compartment="1">-budgetService: BudgetService</text>
+
+</g>
+</g>
+<g transform="translate(0, 64)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="BudgetController" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="BudgetController" data-compartment="2">
+<text x="0.0" y="14.1" stroke="none" data-name="BudgetController" data-compartment="2">-isValidPeriod(): boolean</text>
+<text x="0.0" y="30.3" stroke="none" data-name="BudgetController" data-compartment="2">+createBudget(): Promise&lt;never&gt;</text>
+<text x="0.0" y="46.5" stroke="none" data-name="BudgetController" data-compartment="2">+getBudgets(): Promise&lt;never&gt;</text>
+<text x="0.0" y="62.7" stroke="none" data-name="BudgetController" data-compartment="2">+getBudget(): Promise&lt;never&gt;</text>
+<text x="0.0" y="78.9" stroke="none" data-name="BudgetController" data-compartment="2">+updateBudget(): Promise&lt;never&gt;</text>
+<text x="0.0" y="95.1" stroke="none" data-name="BudgetController" data-compartment="2">+deleteBudget(): Promise&lt;never&gt;</text>
+
+</g>
+</g>
+</g>
+<g data-name="BudgetRequest">
+<g fill="lightblue" stroke="#33322E" data-name="BudgetRequest">
+<rect x="706.0" y="217.0" height="250.0" width="240.0" data-name="BudgetRequest"></rect>
+<path d="M706.0 249.0 L946.0 249.0" fill="none" data-name="BudgetRequest"></path>
+<path d="M706.0 459.0 L946.0 459.0" fill="none" data-name="BudgetRequest"></path>
+</g>
+<g transform="translate(706, 217)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="BudgetRequest" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="BudgetRequest" data-compartment="0">
+<a id="controller.ts.BudgetRequest" xlink:href="controller.ts"><text x="112.0" y="14.1" stroke="none" text-anchor="middle" data-name="BudgetRequest" data-compartment="0">BudgetRequest</text></a>
+
+</g>
+</g>
+<g transform="translate(706, 249)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="BudgetRequest" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="BudgetRequest" data-compartment="1">
+<text x="0.0" y="14.1" stroke="none" data-name="BudgetRequest" data-compartment="1">+body: { categoryId: number</text>
+<text x="0.0" y="30.3" stroke="none" data-name="BudgetRequest" data-compartment="1">currency: string</text>
+<text x="0.0" y="46.5" stroke="none" data-name="BudgetRequest" data-compartment="1">amount: number</text>
+<text x="0.0" y="62.7" stroke="none" data-name="BudgetRequest" data-compartment="1">period?: string</text>
+<text x="0.0" y="78.9" stroke="none" data-name="BudgetRequest" data-compartment="1">startDate: string</text>
+<text x="0.0" y="95.1" stroke="none" data-name="BudgetRequest" data-compartment="1">endDate: string</text>
+<text x="0.0" y="111.3" stroke="none" data-name="BudgetRequest" data-compartment="1">isActive?: boolean</text>
+<text x="0.0" y="127.5" stroke="none" data-name="BudgetRequest" data-compartment="1">}</text>
+<text x="0.0" y="143.7" stroke="none" data-name="BudgetRequest" data-compartment="1">+user: { id: string</text>
+<text x="0.0" y="159.9" stroke="none" data-name="BudgetRequest" data-compartment="1">}</text>
+<text x="0.0" y="176.1" stroke="none" data-name="BudgetRequest" data-compartment="1">+params: { id: string</text>
+<text x="0.0" y="192.3" stroke="none" data-name="BudgetRequest" data-compartment="1">}</text>
+
+</g>
+</g>
+<g transform="translate(706, 459)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="BudgetRequest" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" data-name="BudgetRequest" data-compartment="2">
+
+</g>
+</g>
+</g>
+<g data-name="FastifyRequest&lt;RouteGeneric,RawServer,RawRequest,SchemaCompiler,TypeProvider,ContextConfig,Logger,RequestType&gt;">
+<g fill="#eee8d5" stroke="#33322E" data-name="FastifyRequest&lt;RouteGeneric,RawServer,RawRequest,SchemaCompiler,TypeProvider,ContextConfig,Logger,RequestType&gt;">
+<rect x="328.0" y="72.5" height="32.0" width="996.0" data-name="FastifyRequest&lt;RouteGeneric,RawServer,RawRequest,SchemaCompiler,TypeProvider,ContextConfig,Logger,RequestType&gt;"></rect>
+</g>
+<g transform="translate(328, 72.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="FastifyRequest&lt;RouteGeneric,RawServer,RawRequest,SchemaCompiler,TypeProvider,ContextConfig,Logger,RequestType&gt;" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="FastifyRequest&lt;RouteGeneric,RawServer,RawRequest,SchemaCompiler,TypeProvider,ContextConfig,Logger,RequestType&gt;" data-compartment="0">
+<text x="490.0" y="14.1" stroke="none" text-anchor="middle" data-name="FastifyRequest&lt;RouteGeneric,RawServer,RawRequest,SchemaCompiler,TypeProvider,ContextConfig,Logger,RequestType&gt;" data-compartment="0">FastifyRequest&lt;RouteGeneric,RawServer,RawRequest,SchemaCompiler,TypeProvider,ContextConfig,Logger,RequestType&gt;</text>
+
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg>
