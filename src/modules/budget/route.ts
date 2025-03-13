@@ -163,8 +163,19 @@ export default async function budgetRoutes(fastify: FastifyInstance, options: Fa
 				required: ["id"],
 			},
 			response: {
-				204: {
-					type: "null",
+				200: {
+					type: "object",
+					properties: {
+						success: { type: "boolean" },
+						message: { type: "string" },
+					},
+				},
+				404: {
+					type: "object",
+					properties: {
+						success: { type: "boolean" },
+						error: { type: "string" },
+					},
 				},
 			},
 		},

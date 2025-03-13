@@ -147,7 +147,10 @@ export class BudgetController {
 			const userId = request.user.id;
 			await this.budgetService.deleteBudget(budgetId, userId);
 
-			return reply.code(204).send();
+			return reply.code(200).send({
+				success: true,
+				message: "Budget deleted successfully",
+			});
 		} catch (error) {
 			request.log.error("Failed to delete budget", error);
 			return reply.code(500).send({
