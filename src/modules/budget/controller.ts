@@ -73,7 +73,6 @@ export class BudgetController {
 	async getBudgets(request: BudgetRequest, reply: FastifyReply) {
 		try {
 			const userId = request.user.id;
-			//const userId = "1";
 			const budgets = await this.budgetService.getBudgets(userId);
 
 			return reply.send({
@@ -93,8 +92,7 @@ export class BudgetController {
 	async getBudget(request: BudgetRequest, reply: FastifyReply) {
 		try {
 			const budgetId = parseInt(request.params.id);
-			//const userId = request.user.id;
-			const userId = "1";
+			const userId = request.user.id;
 			const budget = await this.budgetService.getBudget(budgetId, userId);
 
 			return reply.send({
@@ -146,8 +144,7 @@ export class BudgetController {
 	async deleteBudget(request: BudgetRequest, reply: FastifyReply) {
 		try {
 			const budgetId = parseInt(request.params.id);
-			//const userId = request.user.id;
-			const userId = "1";
+			const userId = request.user.id;
 			await this.budgetService.deleteBudget(budgetId, userId);
 
 			return reply.code(204).send();
