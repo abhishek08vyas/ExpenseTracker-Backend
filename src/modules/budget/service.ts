@@ -18,6 +18,8 @@ const budgetSchema = z.object({
 		.optional()
 		.transform((str) => (str ? new Date(str) : undefined)),
 	isActive: z.boolean().default(true),
+	desc: z.string().optional(),
+	bname: z.string(),
 });
 
 type BudgetInput = z.infer<typeof budgetSchema>;
@@ -31,6 +33,7 @@ export class BudgetService {
 			userId: validatedData.userId,
 			amount: validatedData.amount,
 			period: validatedData.period,
+			bname: validatedData.bname,
 		});
 
 		return prisma.budget.create({

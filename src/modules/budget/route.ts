@@ -28,6 +28,8 @@ export default async function budgetRoutes(fastify: FastifyInstance, options: Fa
 					endDate: { type: "string", format: "date-time" },
 					amount: { type: "number", minimum: 1 },
 					isActive: { type: "boolean", default: true },
+					desc: { type: "string" },
+					bname: { type: "string" },
 				},
 			},
 		},
@@ -126,6 +128,8 @@ export default async function budgetRoutes(fastify: FastifyInstance, options: Fa
 					endDate: { type: "string", format: "date-time" },
 					amount: { type: "number", minimum: 0 },
 					isActive: { type: "boolean", default: false },
+					bname: { type: "string" },
+					desc: { type: "string" },
 				},
 			},
 			response: {
