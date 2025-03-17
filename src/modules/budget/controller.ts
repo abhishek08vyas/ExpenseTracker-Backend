@@ -12,6 +12,8 @@ export interface BudgetRequest extends FastifyRequest {
 		startDate: string;
 		endDate: string;
 		isActive?: boolean;
+		desc?: string;
+		bname: string;
 	};
 	params: {
 		id: string;
@@ -34,7 +36,6 @@ export class BudgetController {
 	async createBudget(request: BudgetRequest, reply: FastifyReply) {
 		try {
 			const userId = request.user.id;
-			//const userId ="1";
 
 			// Ensure period is either one of the allowed values or set a default
 			const period = this.isValidPeriod(request.body.period) ? request.body.period : "monthly"; // Default to 'monthly'
