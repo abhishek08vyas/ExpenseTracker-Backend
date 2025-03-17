@@ -108,7 +108,7 @@ export class TransactionController {
 	async getTransactionById(request: GetTransactionByIdRequest, reply: FastifyReply) {
 		try {
 			const userId = request.user.id;
-			const transactionId = parseInt(request.params.id, 10);
+			const transactionId = request.params.id;
 
 			const transaction = await this.transactionService.getTransactionById(transactionId, userId);
 
@@ -136,7 +136,7 @@ export class TransactionController {
 	async updateTransaction(request: UpdateTransactionRequest, reply: FastifyReply) {
 		try {
 			const userId = request.user.id;
-			const transactionId = parseInt(request.params.id, 10);
+			const transactionId = request.params.id;
 
 			// Check if transaction exists and belongs to user
 			const existingTransaction = await this.transactionService.getTransactionById(transactionId, userId);
@@ -175,7 +175,7 @@ export class TransactionController {
 	async deleteTransaction(request: DeleteTransactionRequest, reply: FastifyReply) {
 		try {
 			const userId = request.user.id;
-			const transactionId = parseInt(request.params.id, 10);
+			const transactionId = request.params.id;
 
 			// Check if transaction exists and belongs to user
 			const existingTransaction = await this.transactionService.getTransactionById(transactionId, userId);

@@ -2,6 +2,7 @@
 import { FastifyRequest, FastifyReply } from "fastify";
 import { categoryService } from "./service";
 import logger from "../../utils/logger";
+import { isEmpty } from "../../utils/utils";
 
 export interface CategoryCreateDto {
 	name: string;
@@ -53,23 +54,22 @@ export const categoryController = {
 
 	async updateCategory(request: FastifyRequest<{ Params: CategoryParams; Body: CategoryUpdateDto }>, reply: FastifyReply) {
 		try {
-			const { id } = request.params;
+			const categoryId = request.params?.id;
 			const categoryData = request.body;
-			const numericId = Number(id); // Convert id to number
 
-			if (isNaN(numericId)) {
+			if (isEmpty(categoryId)) {
 				return reply.code(400).send({
 					success: false,
 					message: "Invalid category ID",
 				});
 			}
 
-			const updatedCategory = await categoryService.updateCategory(numericId, categoryData);
+			const updatedCategory = await categoryService.updateCategory(categoryId, categoryData);
 
 			if (!updatedCategory) {
 				return reply.code(404).send({
 					success: false,
-					message: `Category with ID ${id} not found`,
+					message: `Category with ID ${categoryId} not found`,
 				});
 			}
 
@@ -90,22 +90,21 @@ export const categoryController = {
 
 	async deleteCategory(request: FastifyRequest<{ Params: CategoryParams }>, reply: FastifyReply) {
 		try {
-			const { id } = request.params;
-			const numericId = Number(id); // Convert id to number
+			const categoryId = request.params?.id;
 
-			if (isNaN(numericId)) {
+			if (isEmpty(categoryId)) {
 				return reply.code(400).send({
 					success: false,
 					message: "Invalid category ID",
 				});
 			}
 
-			const deleted = await categoryService.deleteCategory(numericId);
+			const deleted = await categoryService.deleteCategory(categoryId);
 
 			if (!deleted) {
 				return reply.code(404).send({
 					success: false,
-					message: `Category with ID ${id} not found`,
+					message: `Category with ID ${categoryId} not found`,
 				});
 			}
 
@@ -125,22 +124,21 @@ export const categoryController = {
 
 	async getCategoryById(request: FastifyRequest<{ Params: CategoryParams }>, reply: FastifyReply) {
 		try {
-			const { id } = request.params;
-			const numericId = Number(id); // Convert id to number
+			const categoryId = request.params?.id;
 
-			if (isNaN(numericId)) {
+			if (isEmpty(categoryId)) {
 				return reply.code(400).send({
 					success: false,
 					message: "Invalid category ID",
 				});
 			}
 
-			const category = await categoryService.getCategoryById(numericId, request.user.id);
+			const category = await categoryService.getCategoryById(categoryId, request.user.id);
 
 			if (!category) {
 				return reply.code(404).send({
 					success: false,
-					message: `Category with ID ${id} not found`,
+					message: `Category with ID ${categoryId} not found`,
 				});
 			}
 
