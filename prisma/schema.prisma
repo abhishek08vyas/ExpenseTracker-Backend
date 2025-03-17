@@ -64,7 +64,7 @@ model VerificationToken {
 }
 
 model Category {
-  id           Int           @id @default(autoincrement())
+  id           String           @id @default(cuid())
   name         String
   userId       String
   description  String?
@@ -81,30 +81,30 @@ model Category {
 }
 
 model Budget {
-  id         Int       @id @default(autoincrement())
-  userId     String
-  categoryId Int?
-  desc       String?
-  bname      String
-  currency   String    @default("CAD")
-  amount     Decimal   @db.Decimal(10, 2)
-  period     String
-  startDate  DateTime  @db.Date
-  endDate    DateTime? @db.Date
-  isActive   Boolean   @default(true)
-  createdAt  DateTime  @default(now())
-  updatedAt  DateTime  @updatedAt
-  category   Category? @relation(fields: [categoryId], references: [id])
-  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id          String       @id @default(cuid())
+  userId      String
+  bname       String?
+  description String?
+  categoryId  String?
+  currency    String    @default("CAD")
+  amount      Decimal   @db.Decimal(10, 2)
+  period      String
+  startDate   DateTime  @db.Date
+  endDate     DateTime? @db.Date
+  isActive    Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  category    Category? @relation(fields: [categoryId], references: [id])
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
   @@index([categoryId])
 }
 
 model Transaction {
-  id              Int       @id @default(autoincrement())
+  id              String       @id @default(cuid())
   userId          String
-  categoryId      Int?
+  categoryId      String?
   transactionType String
   source          String?
   currency        String    @default("CAD")

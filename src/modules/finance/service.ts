@@ -112,7 +112,7 @@ export class FinanceService {
 		});
 
 		// Get category names
-		const categoryIds = categoryExpenses.map((item) => item.categoryId).filter((id) => id !== null) as number[];
+		const categoryIds = categoryExpenses.map((item) => item.categoryId).filter((id) => id !== null) as string[];
 		const categories = await prisma.category.findMany({
 			where: {
 				id: {

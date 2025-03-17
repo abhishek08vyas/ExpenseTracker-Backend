@@ -5,7 +5,7 @@ import logger from "../../utils/logger";
 // Validation schema for creating transactions
 const createTransactionSchema = z.object({
 	userId: z.string(),
-	categoryId: z.number().optional(),
+	categoryId: z.string().optional(),
 	transactionType: z.enum(["expense", "income"]),
 	source: z.string().optional(),
 	currency: z.string().default("CAD"),
@@ -17,7 +17,7 @@ const createTransactionSchema = z.object({
 
 // Validation schema for updating transactions
 const updateTransactionSchema = z.object({
-	categoryId: z.number().optional(),
+	categoryId: z.string().optional(),
 	transactionType: z.enum(["expense", "income"]).optional(),
 	source: z.string().optional(),
 	currency: z.string().optional(),
@@ -43,7 +43,7 @@ const filterTransactionsSchema = z.object({
 	categoryId: z
 		.string()
 		.optional()
-		.transform((val) => (val ? parseInt(val, 10) : undefined)),
+		.transform((val) => (val ? val : undefined)),
 	transactionType: z.enum(["expense", "income"]).optional(),
 	source: z.string().optional(),
 	minAmount: z.coerce.number().optional(),
@@ -83,7 +83,7 @@ export class TransactionService {
 	}
 
 	// Get a transaction by ID
-	async getTransactionById(id: number, userId: string) {
+	async getTransactionById(id: string, userId: string) {
 		logger.info(`Fetching transaction with ID ${id} for user ${userId}`, {
 			userId,
 			transactionId: id,
@@ -102,7 +102,7 @@ export class TransactionService {
 	}
 
 	// Update a transaction
-	async updateTransaction(id: number, userId: string, data: any) {
+	async updateTransaction(id: string, userId: string, data: any) {
 		const validatedData = updateTransactionSchema.parse(data);
 
 		logger.info(`Updating transaction ${id} for user ${userId}`, {
@@ -124,7 +124,7 @@ export class TransactionService {
 	}
 
 	// Delete a transaction (soft delete)
-	async deleteTransaction(id: number, userId: string) {
+	async deleteTransaction(id: string, userId: string) {
 		logger.info(`Deleting transaction ${id} for user ${userId}`, {
 			userId,
 			transactionId: id,

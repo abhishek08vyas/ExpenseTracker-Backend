@@ -21,12 +21,12 @@ export default async function budgetRoutes(fastify: FastifyInstance, options: Fa
 				type: "object",
 				required: ["startDate", "endDate", "amount"],
 				properties: {
-					categoryId: { type: "number" },
+					categoryId: { type: "string", default: "cm8djxws40000l103234zdrsq" },
 					period: { type: "string" },
 					currency: { type: "string", default: "CAD" },
 					startDate: { type: "string", format: "date-time" },
 					endDate: { type: "string", format: "date-time" },
-					amount: { type: "number", minimum: 1 },
+					amount: { type: "number", minimum: 10 },
 					isActive: { type: "boolean", default: true },
 					desc: { type: "string" },
 					bname: { type: "string" },
@@ -80,7 +80,7 @@ export default async function budgetRoutes(fastify: FastifyInstance, options: Fa
 			params: {
 				type: "object",
 				properties: {
-					id: { type: "number" },
+					id: { type: "string" },
 				},
 				required: ["id"],
 			},
@@ -114,14 +114,14 @@ export default async function budgetRoutes(fastify: FastifyInstance, options: Fa
 			params: {
 				type: "object",
 				properties: {
-					id: { type: "number" },
+					id: { type: "string" },
 				},
 				required: ["id"],
 			},
 			body: {
 				type: "object",
 				properties: {
-					categoryId: { type: "number" },
+					categoryId: { type: "string", default: "cm8djxws40000l103234zdrsq" },
 					period: { type: "string" },
 					currency: { type: "string", default: "CAD" },
 					startDate: { type: "string", format: "date-time" },
@@ -162,7 +162,7 @@ export default async function budgetRoutes(fastify: FastifyInstance, options: Fa
 			params: {
 				type: "object",
 				properties: {
-					id: { type: "number" },
+					id: { type: "string" },
 				},
 				required: ["id"],
 			},

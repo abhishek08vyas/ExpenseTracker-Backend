@@ -120,7 +120,7 @@ class AuthService {
 			given_name: userData.given_name || userData.name?.split(" ")[0] || "",
 			family_name: userData.family_name || userData.name?.split(" ").slice(1).join(" ") || "",
 			iat,
-			exp: iat + 3600, // Token valid for 1 hour
+			exp: iat + config.jwt.expire, // Token valid for 1 hour
 		};
 		let secret = config.jwt.secret;
 		if (!secret || typeof secret !== "string" || secret.length < 32) {

@@ -92,7 +92,7 @@ export class BudgetController {
 	// Get a single budget by ID
 	async getBudget(request: BudgetRequest, reply: FastifyReply) {
 		try {
-			const budgetId = parseInt(request.params.id);
+			const budgetId = request.params.id;
 			const userId = request.user.id;
 			const budget = await this.budgetService.getBudget(budgetId, userId);
 
@@ -112,7 +112,7 @@ export class BudgetController {
 	// Update a budget by ID
 	async updateBudget(request: BudgetRequest, reply: FastifyReply) {
 		try {
-			const budgetId = parseInt(request.params.id);
+			const budgetId = request.params.id;
 			const userId = request.user.id;
 			//const userId ="1";
 
@@ -144,7 +144,7 @@ export class BudgetController {
 	// Delete a budget by ID
 	async deleteBudget(request: BudgetRequest, reply: FastifyReply) {
 		try {
-			const budgetId = parseInt(request.params.id);
+			const budgetId = request.params.id;
 			const userId = request.user.id;
 			await this.budgetService.deleteBudget(budgetId, userId);
 

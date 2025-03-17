@@ -8,7 +8,7 @@ const prisma = new PrismaClient();
 // Validation schema for creating and updating budgets
 const budgetSchema = z.object({
 	userId: z.string(),
-	categoryId: z.number().optional(),
+	categoryId: z.string().optional(),
 	currency: z.string().default("CAD"),
 	amount: z.number().positive(),
 	period: z.enum(["monthly", "weekly", "daily", "yearly"]),
@@ -60,7 +60,7 @@ export class BudgetService {
 	}
 
 	// Get a single budget by ID
-	async getBudget(budgetId: number, userId: string) {
+	async getBudget(budgetId: string, userId: string) {
 		logger.info(`Fetching budget ${budgetId} for user ${userId}`);
 
 		return prisma.budget.findFirst({
@@ -72,7 +72,7 @@ export class BudgetService {
 	}
 
 	// Update a budget by ID
-	async updateBudget(budgetId: number, userId: string, data: any) {
+	async updateBudget(budgetId: string, userId: string, data: any) {
 		const validatedData = budgetSchema.partial().parse(data);
 
 		logger.info(`Updating budget ${budgetId} for user ${userId}`);
@@ -84,7 +84,7 @@ export class BudgetService {
 	}
 
 	// Delete a budget by ID
-	async deleteBudget(budgetId: number, userId: string) {
+	async deleteBudget(budgetId: string, userId: string) {
 		logger.info(`Deleting budget ${budgetId} for user ${userId}`);
 
 		await prisma.budget.delete({

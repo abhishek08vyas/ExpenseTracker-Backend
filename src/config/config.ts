@@ -9,6 +9,7 @@ const envSchema = z.object({
 	JWT_SECRET: z.string().min(10).default("KUGsyv3xBMdy8LtMVEZUcX5NbazKBPuldbNr5qsTrlo="),
 	APP_CLIENT_ID: z.string().min(10).default("student-finance-tracker-client-mun"),
 	JWT_ISS: z.string().min(10).default("expense-tracker-mun.vercel.app"),
+	JWT_EXPIREIN: z.coerce.number().min(2).positive().default(3600),
 	// LOG_LEVEL: z.enum(["error", "warn", "info", "http", "debug"]).default("info"),
 });
 
@@ -20,6 +21,7 @@ const env = envSchema.parse({
 	JWT_SECRET: process.env.JWT_SECRET,
 	APP_CLIENT_ID: process.env.APP_CLIENT_ID,
 	JWT_ISS: process.env.JWT_ISS,
+	JWT_EXPIREIN: process.env.JWT_EXPIREIN,
 	// LOG_LEVEL: process.env.LOG_LEVEL,
 });
 
@@ -39,6 +41,7 @@ const config = {
 		secret: env.JWT_SECRET,
 		iss: env.JWT_ISS,
 		appClintId: env.APP_CLIENT_ID,
+		expire: env.JWT_EXPIREIN,
 	},
 };
 
