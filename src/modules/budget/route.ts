@@ -21,7 +21,7 @@ export default async function budgetRoutes(fastify: FastifyInstance, options: Fa
 				type: "object",
 				required: ["startDate", "endDate", "amount"],
 				properties: {
-					categoryId: { type: "string", default: "cm8djxws40000l103234zdrsq" },
+					categoryId: { type: "string" },
 					period: { type: "string" },
 					currency: { type: "string", default: "CAD" },
 					startDate: { type: "string", format: "date-time" },
@@ -121,13 +121,13 @@ export default async function budgetRoutes(fastify: FastifyInstance, options: Fa
 			body: {
 				type: "object",
 				properties: {
-					categoryId: { type: "string", default: "cm8djxws40000l103234zdrsq" },
+					categoryId: { type: "string" },
 					period: { type: "string" },
-					currency: { type: "string", default: "CAD" },
+					currency: { type: "string" },
 					startDate: { type: "string", format: "date-time" },
 					endDate: { type: "string", format: "date-time" },
 					amount: { type: "number", minimum: 0 },
-					isActive: { type: "boolean", default: false },
+					isActive: { type: "boolean" },
 					bname: { type: "string" },
 					desc: { type: "string" },
 				},
