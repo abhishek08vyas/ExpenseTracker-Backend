@@ -21,7 +21,7 @@ export default async function transactionRoutes(fastify: FastifyInstance, option
 				type: "object",
 				required: ["transactionType", "amount", "transactionDate"],
 				properties: {
-					categoryId: { type: "string", default: "cm8djxws40000l103234zdrsq" },
+					categoryId: { type: "string" },
 					transactionType: { type: "string", enum: ["expense", "income"] },
 					source: { type: "string" },
 					currency: { type: "string", default: "CAD" },
@@ -98,7 +98,7 @@ export default async function transactionRoutes(fastify: FastifyInstance, option
 				properties: {
 					startDate: { type: "string", format: "date-time" },
 					endDate: { type: "string", format: "date-time" },
-					categoryId: { type: "string", default: "cm8djxws40000l103234zdrsq" },
+					categoryId: { type: "string" },
 					transactionType: { type: "string", enum: ["expense", "income"] },
 					source: { type: "string" },
 					minAmount: { type: "string" },
@@ -191,7 +191,7 @@ export default async function transactionRoutes(fastify: FastifyInstance, option
 			body: {
 				type: "object",
 				properties: {
-					categoryId: { type: "string", default: "cm8djxws40000l103234zdrsq" },
+					categoryId: { type: "string" },
 					transactionType: { type: "string", enum: ["expense", "income"] },
 					source: { type: "string" },
 					currency: { type: "string" },
