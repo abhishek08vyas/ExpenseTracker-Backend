@@ -123,11 +123,11 @@ export default async function budgetRoutes(fastify: FastifyInstance, options: Fa
 				properties: {
 					categoryId: { type: "string" },
 					period: { type: "string" },
-					currency: { type: "string", default: "CAD" },
+					currency: { type: "string" },
 					startDate: { type: "string", format: "date-time" },
 					endDate: { type: "string", format: "date-time" },
 					amount: { type: "number", minimum: 0 },
-					isActive: { type: "boolean", default: false },
+					isActive: { type: "boolean" },
 					bname: { type: "string" },
 					desc: { type: "string" },
 				},
