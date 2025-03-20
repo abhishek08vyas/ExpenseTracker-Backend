@@ -19,7 +19,7 @@ export default async function transactionRoutes(fastify: FastifyInstance, option
 			},
 			body: {
 				type: "object",
-				required: ["transactionType", "amount", "transactionDate"],
+				required: ["transactionType", "amount", "transactionDate", "source", "categoryId", "description"],
 				properties: {
 					categoryId: { type: "string" },
 					transactionType: { type: "string", enum: ["expense", "income"] },
