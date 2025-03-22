@@ -29,6 +29,7 @@ export default async function transactionRoutes(fastify: FastifyInstance, option
 					transactionDate: { type: "string", format: "date-time" },
 					description: { type: "string" },
 					isRecurring: { type: "boolean", default: false },
+					attachmentUrl: { type: "string" },
 				},
 			},
 			response: {
@@ -199,6 +200,7 @@ export default async function transactionRoutes(fastify: FastifyInstance, option
 					transactionDate: { type: "string", format: "date-time" },
 					description: { type: "string" },
 					isRecurring: { type: "boolean" },
+					attachmentUrl: { type: "string" },
 				},
 			},
 			response: {
