@@ -13,6 +13,7 @@ const createTransactionSchema = z.object({
 	transactionDate: z.string().transform((str) => new Date(str)),
 	description: z.string().optional(),
 	isRecurring: z.boolean().default(false),
+	attachmentUrl: z.string().optional(),
 });
 
 // Validation schema for updating transactions
@@ -28,6 +29,7 @@ const updateTransactionSchema = z.object({
 		.optional(),
 	description: z.string().optional(),
 	isRecurring: z.boolean().optional(),
+	attachmentUrl: z.string().optional(),
 });
 
 // Validation schema for filtering transactions
