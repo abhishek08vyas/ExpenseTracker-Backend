@@ -19,7 +19,7 @@ export default async function budgetRoutes(fastify: FastifyInstance, options: Fa
 			},
 			body: {
 				type: "object",
-				required: ["startDate", "endDate", "amount"],
+				required: ["bname", "categoryId", "startDate", "endDate", "amount"],
 				properties: {
 					categoryId: { type: "string" },
 					period: { type: "string" },
